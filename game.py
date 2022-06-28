@@ -128,13 +128,13 @@ while running == True:
     elif cmd == "shake a tree":
         scroll("You start to shake a tree.")
         items = [
-            f"{town_fruit}", f"{random.choice(furniture)}", "stick",
-            "nothing happened"
+            f"{town_fruit}", f"{random.choice(furniture)}", "stick"
         ]
         for i in range(random.randint(1, 9)):
             input("Press Enter to shake the tree.")
             if random.randint(1, 3) == 3:
                 scroll(f"You got one: {random.choice(items).strip()}")
+            #
             else:
                 scroll("Nothing happened.")
         scroll("Your arms got tired")
