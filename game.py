@@ -1,4 +1,20 @@
-import random,sys,time
+import random,sys,time,json
+
+title = "Animal Crossing"
+ver = "v1.0.0"
+
+cmd_fmt = "==={}===\nYou: "
+cmd_fmt2 = "|{}|"
+
+town_fruit = "pineapple"
+furniture = ["clock"]
+
+def load():
+  f = open("dat.json","r")
+  save_data = json.loads(f.read())
+  f.close()
+  username = save_data["name"]
+  pockets = save_data["pockets"]
 
 def scroll(text): 
     for i in text:
@@ -8,7 +24,25 @@ def scroll(text):
     
     input("\nPress Enter...")
 
-scroll("Welcome to This Game!")
+
+  load()
+  scroll(f"Welcome back to {title}, {ver}!\nYou're the one they call {username}, right?")
+#except:  
+  '''scroll(f"Welcome to {title}, {ver}!")
+  name = input(cmd_fmt.format("What should we call you?"))
+  phrase = input(cmd_fmt.format("Tell us your catchphrase."))
+  
+  dictionary ={
+      "name" : name,
+      "phrase" : phrase,
+      "pockets" : []
+  }
+    
+  with open("dat.json", "w") as outfile:
+      json.dump(dictionary, outfile)'''
+  pass
+  
+  
 manual = {"outdoors":'''===Manual===
 Actions:
 -Got to store
@@ -26,12 +60,6 @@ Actions:
 --sell
 --leave
 -Save and quit''',}
-
-cmd_fmt = "==={}===\nYou: "
-cmd_fmt2 = "|{}|"
-
-town_fruit = ["pineapple"]
-furniture = ["clock"]
 
 def help():
     helped = False
