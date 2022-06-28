@@ -30,6 +30,9 @@ Actions:
 cmd_fmt = "==={}===\nYou: "
 cmd_fmt2 = "|{}|"
 
+town_fruit = ["pineapple"]
+furniture = ["clock"]
+
 def help():
     helped = False
     while helped == False:        
@@ -77,9 +80,12 @@ while running==True:
         input("Press Enter to pick a flower.")
     elif cmd=="shake a tree":
         scroll("You start to shake a tree.")
-        input("Press Enter to shake the tree.")
-        for i in range(3):
-            pass
+        items = [f"{town_fruit}",f"{random.choice(furniture)}","stick","nothing happened"]
+        for i in range(random.randint(0, 9)):
+          input("Press Enter to shake the tree.")
+          if random.randint(0, 3) == 3:
+            scroll(random.choice(items))#!Todo: finish fleshing out chance
+          
     
     elif cmd=="talk to someone":
         #scroll(f"You talk to {}.")
