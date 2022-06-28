@@ -5,7 +5,7 @@ def scroll(text):
         sys.stdout.write(i)
         sys.stdout.flush()
         time.sleep(.1)
-
+    
     input("\nPress Enter...")
 
 scroll("Welcome to This Game!")
@@ -81,10 +81,13 @@ while running==True:
     elif cmd=="shake a tree":
         scroll("You start to shake a tree.")
         items = [f"{town_fruit}",f"{random.choice(furniture)}","stick","nothing happened"]
-        for i in range(random.randint(0, 9)):
+        for i in range(random.randint(1, 9)):
           input("Press Enter to shake the tree.")
-          if random.randint(0, 3) == 3:
-            scroll(random.choice(items))#!Todo: finish fleshing out chance
+          if random.randint(1, 3) == 3:
+            scroll(f"You got one: {random.choice(items).strip()}")
+          else:
+            scroll("Nothing happened.")
+        scroll("Your arms got tired")
           
     
     elif cmd=="talk to someone":
