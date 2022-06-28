@@ -14,7 +14,7 @@ def load():
     try:
         f = open("dat.json", "r")
         save_data = json.loads(f.read())
-        print(save_data)
+        #print(save_data)
         f.close()
         global username, pockets
         username = save_data["name"]
@@ -24,14 +24,6 @@ def load():
     except:
         #print("Error loading data.")
         return False
-    
-    '''with open('dat.json', 'w') as openfile:
-    
-        # Reading from json file
-        json_object = json.load(openfile)
-    
-    print(json_object)
-    print(type(json_object))'''
 
 
 def scroll(text):
@@ -61,7 +53,8 @@ elif load == False:
     
     with open("dat.json", "w") as outfile:
         json.dump(dictionary, outfile)
-    pass
+
+    scroll(f'You: I\'m, {name}. \"{phrase.capitalize()}\".')
 
 manual = {
     "outdoors": '''===Manual===
