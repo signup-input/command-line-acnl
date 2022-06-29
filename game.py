@@ -1,4 +1,4 @@
-import random, sys, time, json
+import random, sys, time, json, datetime
 
 title = "Animal Crossing"
 ver = "v1.0.0"
@@ -16,17 +16,17 @@ def load():
         save_data = json.loads(f.read())
         #print(save_data)
         f.close()
-        global username, pockets
+        #all variables are now loaded from the save file
+        global username, pockets, phrase, town_fruit
         username = save_data["name"]
         pockets = save_data["pockets"]
+        phrase = save_data["phrase"]
         town_fruit = save_data["town_fruit"]
         #print(f"Loaded {username}'s data.")
         return True
     except:
         #print("Error loading data.")
         return False
-
-
 
 def scroll(text):
     for i in text:
@@ -59,11 +59,10 @@ elif load == False:
     scroll(f'You: I\'m, {name}. \"{phrase.capitalize()}\".')
     #scroll("You: I'm a new player. I'm new to the game. I'm new to the town. I'm new to the world.")
     scroll(f"Well, \"{phrase}\" to you too, {name}.")
+    
+print("===========================================================")
 print("===========================================================")
 
-def save():
-    #print(f"Saved {username}'s data.")
-    pass
 
 manual = {
     "outdoors": '''===Manual===
@@ -83,8 +82,16 @@ Actions:
 --sell
 --leave
 -Save and quit''',
+    "passport": '''===Manual===
+Actions:
+--edit
+--put away''',
 }
 
+passport = f'''===Passport===
+Name: {username}
+Catchphrase: {phrase}
+Date of Birth: ###/###/####'''
 
 def help():
     helped = False
@@ -151,13 +158,33 @@ while running == True:
     elif cmd == "talk to someone":
         #scroll(f"You approach {}.")
         pass
-
     elif cmd == "visit someone":
         #scroll(f"You visit {}.")
         pass
 
     elif cmd == "view passport":
+        setting = "passport"
+
         scroll(f"You view your passport.")
+        scroll(passport)
+        passport_cmd = input(cmd_fmt.format("What now?"))
+        if passport_cmd == "edit":
+            edit_cmd = input(cmd_fmt.format("Change what?"))
+            if edit_cmd == "name":
+                new_name = input(cmd_fmt.format("What should we call you?"))
+                scroll(f"You change your name to {new_name}.")
+                username = new_name
+            elif edit_cmd == "phrase":
+                new_phrase = input(cmd_fmt.format("What should we change it to?"))
+                scroll(f"You change your phrase to {new_phrase}.")
+                phrase = new_phrase
+            else:
+                scroll("You can't change that.")
+            pass
+        elif passport_cmd == "put away":
+            pass
+        else:
+            help()
 
     elif cmd == "go home":
         scroll("You go home.")
@@ -174,5 +201,13 @@ while running == True:
     else:
         help()
 
+def save():
+    dat = open('dat.json')
+    old_data = json.load(dat)
+    print(username, phrase, town_fruit, pockets)
+    dat.close()
+    print(old_data)
+    #print(f"Saved {username}'s data.")
+    pass
 save()
 sys.exit()
