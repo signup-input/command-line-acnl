@@ -6,8 +6,8 @@ ver = "v1.0.0"
 cmd_fmt = "==={}===\nYou: "
 cmd_fmt2 = "|{}|"
 
-town_fruit = "pineapple"
-furniture = ["clock"]
+fruits = ["apple", "banana", "orange", "pear", "strawberry"]
+furniture = ["chair", "table", "bed", "desk", "couch"]
 
 
 def load():
@@ -19,11 +19,13 @@ def load():
         global username, pockets
         username = save_data["name"]
         pockets = save_data["pockets"]
+        town_fruit = save_data["town_fruit"]
         #print(f"Loaded {username}'s data.")
         return True
     except:
         #print("Error loading data.")
         return False
+
 
 
 def scroll(text):
@@ -37,9 +39,8 @@ def scroll(text):
 
 load = load()
 if load == True:
-    scroll(
-        f"Welcome back to {title}, {ver}!\nYou're the one they call {username}, right?"
-    )
+    scroll(f"Welcome back to {title}, {ver}!")
+    scroll(f"You're the one they call {username}, right?")
 elif load == False:
     scroll(f"Welcome to {title}, {ver}!")
     name = input(cmd_fmt.format("What should we call you?"))
@@ -48,13 +49,21 @@ elif load == False:
     dictionary ={
         "name" : name,
         "phrase" : phrase,
-        "pockets" : []
+        "pockets" : [],
+        "town_fruit" : random.choice(fruits),
     }
     
     with open("dat.json", "w") as outfile:
         json.dump(dictionary, outfile)
 
     scroll(f'You: I\'m, {name}. \"{phrase.capitalize()}\".')
+    #scroll("You: I'm a new player. I'm new to the game. I'm new to the town. I'm new to the world.")
+    scroll(f"Well, \"{phrase}\" to you too, {name}.")
+print("===========================================================")
+
+def save():
+    #print(f"Saved {username}'s data.")
+    pass
 
 manual = {
     "outdoors": '''===Manual===
@@ -140,8 +149,9 @@ while running == True:
         scroll("Your arms got tired")
 
     elif cmd == "talk to someone":
-        #scroll(f"You talk to {}.")
+        #scroll(f"You approach {}.")
         pass
+
     elif cmd == "visit someone":
         #scroll(f"You visit {}.")
         pass
@@ -164,4 +174,5 @@ while running == True:
     else:
         help()
 
+save()
 sys.exit()
