@@ -43,14 +43,15 @@ if load == True:
     scroll(f"You're the one they call {username}, right?")
 elif load == False:
     scroll(f"Welcome to {title}, {ver}!")
-    name = input(cmd_fmt.format("What should we call you?"))
+    username = input(cmd_fmt.format("What should we call you?"))
     phrase = input(cmd_fmt.format("Tell us your catchphrase."))
-  
+    town_fruit = random.choice(fruits)
+
     dictionary ={
-        "name" : name,
+        "name" : username,
         "phrase" : phrase,
         "pockets" : [],
-        "town_fruit" : random.choice(fruits),
+        "town_fruit" : town_fruit,
     }
     
     with open("dat.json", "w") as outfile:
@@ -84,8 +85,8 @@ Actions:
 -Save and quit''',
     "passport": '''===Manual===
 Actions:
---edit
---put away''',
+-edit
+-put away''',
 }
 
 passport = f'''===Passport===
@@ -167,24 +168,33 @@ while running == True:
 
         scroll(f"You view your passport.")
         scroll(passport)
-        passport_cmd = input(cmd_fmt.format("What now?"))
-        if passport_cmd == "edit":
-            edit_cmd = input(cmd_fmt.format("Change what?"))
-            if edit_cmd == "name":
-                new_name = input(cmd_fmt.format("What should we call you?"))
-                scroll(f"You change your name to {new_name}.")
-                username = new_name
-            elif edit_cmd == "phrase":
-                new_phrase = input(cmd_fmt.format("What should we change it to?"))
-                scroll(f"You change your phrase to {new_phrase}.")
-                phrase = new_phrase
+        viewing = True  # this is a flag to keep the loop going
+        while viewing == True:
+            passport_cmd = input(cmd_fmt.format("What now?"))
+            if passport_cmd == "edit":
+                done = False 
+                while done == False:
+                    edit_cmd = input(cmd_fmt.format("Change what?"))
+                    if edit_cmd == "name":
+                        new_name = input(cmd_fmt.format("What should we call you?"))
+                        scroll(f"You change your name to {new_name}.")
+                        username = new_name
+                    elif edit_cmd == "phrase":
+                        new_phrase = input(cmd_fmt.format("What should we change it to?"))
+                        scroll(f"You change your phrase to {new_phrase}.")
+                        phrase = new_phrase
+                    elif edit_cmd == "save changes":
+                        scroll("Changes saved.")
+                        done = True
+                    else:
+                        scroll("You can't change that.")
+                pass
+            elif passport_cmd == "put away":
+                scroll("You put away your passport.")
+                viewing = False
+                pass
             else:
-                scroll("You can't change that.")
-            pass
-        elif passport_cmd == "put away":
-            pass
-        else:
-            help()
+                help()
 
     elif cmd == "go home":
         scroll("You go home.")
@@ -202,12 +212,22 @@ while running == True:
         help()
 
 def save():
-    dat = open('dat.json')
-    old_data = json.load(dat)
-    print(username, phrase, town_fruit, pockets)
-    dat.close()
-    print(old_data)
-    #print(f"Saved {username}'s data.")
-    pass
+    #dat = open('dat.json')
+    #old_data = json.load(dat)
+    #print(username, phrase, town_fruit, pockets)
+    #dat.close()
+    #print(old_data)
+
+    dictionary ={
+        "name" : username,
+        "phrase" : phrase,
+        "pockets" : pockets,
+        "town_fruit" : town_fruit,
+    }
+    
+    with open("dat.json", "w") as outfile:
+        json.dump(dictionary, outfile)
+    print(f"Saved {username}'s data.")
+
 save()
 sys.exit()
