@@ -29,11 +29,7 @@ def load():
         return False
 
 def save():
-    #dat = open('dat.json')
-    #old_data = json.load(dat)
-    #print(username, phrase, town_fruit, pockets)
-    #dat.close()
-    #print(old_data)
+    scroll("Saving data...")
 
     dictionary ={
         "name" : username,
@@ -130,10 +126,6 @@ def help():
         else:
             helped = False
 
-
-#def whereami():
-#    scroll(f"===You are in/at {setting}===\n")
-
 running = True
 while running == True:
     cmd = input(cmd_fmt.format("What would you like to do?")).lower()
@@ -178,9 +170,14 @@ while running == True:
 
     elif cmd == "talk to someone":
         #scroll(f"You approach {}.")
+        scroll("You approach a person.")
+        scroll("Feature has not been implemented yet.")
         pass
     elif cmd == "visit someone":
         #scroll(f"You visit {}.")
+        scroll("You visit a person.")
+        scroll("Feature has not been implemented yet.")
+        scroll("You leave.")
         pass
 
     elif cmd == "view passport":
@@ -221,12 +218,12 @@ while running == True:
         setting = "work"
 
     elif cmd == "save and quit":
-        scroll("There is no save function as of now...")
+        save()
         scroll("See you soon!")
         running = False
 
     else:
         help()
 
-save()
+
 sys.exit()
