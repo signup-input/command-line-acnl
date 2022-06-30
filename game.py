@@ -14,7 +14,6 @@ def load():
     try:
         f = open("dat.json", "r")
         save_data = json.loads(f.read())
-        #print(save_data)
         f.close()
         #all variables are now loaded from the save file
         global username, pockets, phrase, town_fruit
@@ -22,10 +21,9 @@ def load():
         pockets = save_data["pockets"]
         phrase = save_data["phrase"]
         town_fruit = save_data["town_fruit"]
-        #print(f"Loaded {username}'s data.")
+        print(f"Loaded {username}'s data.")
         return True
     except:
-        #print("Error loading data.")
         return False
 
 def save():
@@ -72,7 +70,6 @@ elif load == False:
         json.dump(dictionary, outfile)
 
     scroll(f'You: I\'m, {name}. \"{phrase.capitalize()}\".')
-    #scroll("You: I'm a new player. I'm new to the game. I'm new to the town. I'm new to the world.")
     scroll(f"Well, \"{phrase}\" to you too, {name}.")
     
 print("===========================================================")
