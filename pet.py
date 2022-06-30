@@ -42,6 +42,7 @@ def save():
     print(f"Saved {name}'s data.")
 
 cmd_fmt2 = "|{}|\nYou: "
+
 load = load()
 if load == True:
     scroll("You decide to play with your pet.")
@@ -56,4 +57,8 @@ elif load == False:
     thirst = 10
     groomed = True
     save()
-scroll("Feature not yet implemented.")
+
+caring_for = True
+while caring_for == True:
+    scroll("Feature not yet implemented.")
+    caring_for = False

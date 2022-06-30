@@ -68,8 +68,6 @@ elif load == False:
 print("===========================================================")
 print("===========================================================")
 
-#constant_cmds = '''-See manual
-#-Save and quit'''
 manual = {
     "outdoors": '''===Manual===
 Actions:
@@ -218,7 +216,11 @@ while running == True:
         setting = "work"
         scroll("Feature has not been implemented yet.")
         pass
-
+    
+    elif cmd == "play with my pet":
+        scroll("You play with your pet.")
+        import pet
+        
     else:
         help()
 
