@@ -1,10 +1,11 @@
 import random, sys, time, json, datetime
+from text_scroll_module import scroll
 
 title = "Animal Crossing"
 ver = "v1.0.0"
 
 cmd_fmt = "==={}===\nYou: "
-cmd_fmt2 = "|{}|"
+cmd_fmt2 = "|{}|\nYou: "
 
 fruits = ["apple", "banana", "orange", "pear", "strawberry"]
 furniture = ["chair", "table", "bed", "desk", "couch"]
@@ -39,14 +40,6 @@ def save():
     with open("dat.json", "w") as outfile:
         json.dump(dictionary, outfile)
     print(f"Saved {username}'s data.")
-
-def scroll(text):
-    for i in text:
-        sys.stdout.write(i)
-        sys.stdout.flush()
-        time.sleep(.1)
-
-    input("\nPress Enter...")
 
 
 load = load()
