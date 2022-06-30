@@ -75,7 +75,8 @@ elif load == False:
 print("===========================================================")
 print("===========================================================")
 
-
+#constant_cmds = '''-See manual
+#-Save and quit'''
 manual = {
     "outdoors": '''===Manual===
 Actions:
@@ -92,8 +93,7 @@ Actions:
 Actions:
 --buy
 --sell
---leave
--Save and quit''',
+--leave''',
     "passport": '''===Manual===
 Actions:
 -edit
@@ -111,7 +111,7 @@ def help():
     helped = False
     while helped == False:
         scroll(
-            f"===You are (in the/at the) {setting}.===\n===Want some help? (y/n)==="
+            f"===You are (in the/at the/viewing your) {setting}.===\n===Want some help? (y/n)==="
         )
         help_prompt = input("You: ")
         if help_prompt == "y":
@@ -128,30 +128,38 @@ while running == True:
     cmd = input(cmd_fmt.format("What would you like to do?")).lower()
     setting = "outdoors"
 
-    if cmd == "see manual":
+    #you can't save or view manual at any time, only in this part of the loop
+    if cmd == "see manual" or cmd == "manual" or cmd == "help" or cmd == "info":
         scroll(manual)
+    elif cmd == "save and quit":
+        save()
+        scroll("See you soon!")
+        running = False
 
     elif cmd == "go to the store":
         setting = "store"
 
         scroll("You go to the store.")
-        store_cmd = input(cmd_fmt.format("What would you like to do here?"))
+        while setting == "store":
+            store_cmd = input(cmd_fmt.format("What would you like to do here?"))
+            if store_cmd == "sell":
+                scroll("Feature not yet implemented.")
+            elif store_cmd == "buy":
+                scroll("You ask the shopkeeper what is for sale.")
+                scroll("Feature not yet implemented.")
 
-        if store_cmd == "sell":
-            pass
-        if store_cmd == "buy":
-            scroll("You ask the shopkeeper what is for sale.")
+            elif store_cmd == "leave":
+                setting = "outdoors"
 
-        elif store_cmd == "leave":
-            pass
-
-        else:
-            help()
+            else:
+                help()
 
     elif cmd == "pick flowers":
         scroll("You begin to pick flowers.")
         input("Press Enter to pick a flower.")
+        scroll("Feature not yet implemented.")
     elif cmd == "shake a tree":
+        scroll("Feature not yet implemented.")
         scroll("You start to shake a tree.")
         items = [
             f"{town_fruit}", f"{random.choice(furniture)}", "stick"
@@ -199,7 +207,7 @@ while running == True:
                     save()
                 else:
                     scroll("You can't change that.")
-                pass
+                #pass
             elif passport_cmd == "put passport away":
                 viewing = False
             else:
@@ -209,15 +217,14 @@ while running == True:
 
     elif cmd == "go home":
         scroll("You go home.")
+        scroll("Feature has not been implemented yet.")
+        pass
 
     elif cmd == "go to work":
         scroll("You go to work.")
         setting = "work"
-
-    elif cmd == "save and quit":
-        save()
-        scroll("See you soon!")
-        running = False
+        scroll("Feature has not been implemented yet.")
+        pass
 
     else:
         help()
