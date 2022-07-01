@@ -1,9 +1,9 @@
 import random,json,sys
-from text_scroll_module import scroll
+from text.font_effects.text_scroll_module import scroll
 
 def load():
     try:
-        f = open("pet_dat.json", "r")
+        f = open("pet/pet_dat.json", "r")
         save_data = json.loads(f.read())
         f.close()
         #all variables are now loaded from the save file
@@ -37,7 +37,7 @@ def save():
         "happiness" : happiness,
     }
     
-    with open("pet_dat.json", "w") as outfile:
+    with open("pet/pet_dat.json", "w") as outfile:
         json.dump(dictionary, outfile)
     print(f"Saved {name}'s data.")
 
@@ -60,5 +60,5 @@ elif load == False:
 
 caring_for = True
 while caring_for == True:
-    scroll("Feature not yet implemented.")
+    scroll("Feature not yet implemented. Try again later.")
     caring_for = False
