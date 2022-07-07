@@ -52,42 +52,61 @@ class story():
         except NameError:
             method = 'trade for ' + random.choice(['medicine', 'food', 'gold'])
     elif method == 'use musical instrument':
-        method = 'use ' + random.choice(['piano', 'guitar', 'drums', 'violin'])
+        global instrument
+        instruments = ['piano', 'guitar', 'drum', 'violin']
+        instrument = random.choice(instruments)
+        method = 'use ' + instrument
 
     complication = random.choice(complications)
-    
-    def __str__(self):
-        return "-----------------------------------------------------\nTheme: " + theme + "\nSetting: " + setting + "\n-Goal: " + self.goal + "\n-Method: " + self.method + "\n-Complication: " + self.complication + "\n-----------------------------------------------------\n"
-    
 
-class substory():
+    def __str__(self):
+        story = f"""-----------------------------------------------------
+Theme: {theme}.
+Setting: {setting}
+Main Goal: {self.goal}
+    -Method: {self.method},
+    -Complication: {self.complication}
+-Subgoal 1: {substory()}
+-Subgoal 2: {substory()}
+-Subgoal 3: {substory()}
+-----------------------------------------------------"""
+        return story
+
+class substory(object):
     setting = setting
     theme = theme
-    goal = random.choice(goals[theme])
-    if goal == 'fetch':
-        global item
-        item = random.choice(['medicine', 'food', 'gold'])
-        goal = 'fetch ' + item
-    elif goal == 'go to':
-        goal = 'go to ' + random.choice(settings)
-    method = random.choice(methods)
-    if method == 'trade for':
+    def __init__(self) -> None:
+        self.goal = random.choice(goals[theme])
+        if self.goal == 'fetch':
+            global item
+            item = random.choice(['medicine', 'food', 'gold'])
+            self.goal = 'fetch ' + item
+        elif self.goal == 'go to':
+            self.goal = 'go to ' + random.choice(settings)
+        self.method= random.choice(methods)
+        if self.method== 'trade for':
+            try:
+                self.method='trade for ' + item
+            except NameError:
+                self.method= 'trade for ' + random.choice(['medicine', 'food', 'gold'])
+        elif self.method== 'use musical instrument':
+            global instrument
+            instruments = ['piano', 'guitar', 'drum', 'violin']
+            instrument = random.choice(instruments)
+            self.method= 'use ' + instrument #player should be given an instrument at this point
+        self.complication = random.choice(complications)
+        
         try:
-            method ='trade for ' + item
+            self.reward = random.choice(['medicine', 'food', 'gold', instrument])
         except NameError:
-            method = 'trade for ' + random.choice(['medicine', 'food', 'gold'])
-    elif method == 'use musical instrument':
-        method = 'use ' + random.choice(['piano', 'guitar', 'drums', 'violin']) #player should be given an instrument at this point
-    complication = random.choice(complications)
+            self.reward = random.choice(['medicine', 'food', 'gold'])
 
     def __str__(self):
-        self.substory = f"""-----------------------------------------------------
-        'Tis a story of great {self.theme}.
-        You're in {self.setting}
-        and must {self.goal}
-        By the way: ({self.method},
-        {self.complication})
-        -----------------------------------------------------"""
+        self.substory = f"""
+    -Goal: {self.goal}
+    -Method: {self.method}
+    -Complication: {self.complication}
+    -Reward: {self.reward}"""
         return self.substory
 
 story = story()
