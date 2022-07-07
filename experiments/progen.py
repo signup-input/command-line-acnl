@@ -14,23 +14,35 @@ Setting (house, The Expanse, etc.)
     complication (only during night, use training weapons, Dire monsters, bad clues,  etc)
 '''
 
-if theme == "adventure":
-    if setting == "house": #main setting
-        if goal == "fetch": #main goal
-            if goal == "fetch": #sub quest/goal
-                if goal == "fetch":# sub sub quest/goal
-                    if method == "don't kill": # sub sub method                       
-                        if complication == "only during night":
-                            pass
-                    pass
-            pass
-        elif goal == "go to":
-            pass
-        pass
-    elif setting == "The Expanse":
-        pass
-    pass
-elif theme == "mystery":
-    pass
-elif theme == "exploration":
-    pass
+import random
+themes = ['mystery', 'adventure', 'exploration']
+settings = ['The Expanse', 'Tyshau', 'your house', 'Neo-Lilar']
+goals = {'mystery': ['fetch', 'go to'],
+         'adventure': ['fetch', 'go to', 'destroy'],
+         'exploration': ['fetch', 'go to', 'build']}
+methods = ['don\'t kill', 'trade for', 'bad clues']
+complications = ['only during night', 'monsters', 'bad clues']
+
+class story():
+    theme = random.choice(themes)
+    setting = random.choice(settings)
+    goal = random.choice(goals[theme])
+    if goal == 'fetch':
+        object = random.choice(['medicine', 'food', 'gold'])
+    method = random.choice(methods)
+    if method == 'trade for':
+        method == 'trade for' + object
+    complication = random.choice(complications)
+    def __str__(self):
+        return 'Theme: ' + self.theme + '\nSetting: ' + self.setting + '\nGoal: ' + self.goal + '\nMethod: ' + self.method + '\nComplication: ' + self.complication
+    def test_story(self):
+        print("-----------------------------------------------------")
+        print(self.theme)
+        print(self.setting)
+        print(self.goal)
+        print(self.method)
+        print(self.complication)
+
+story = story()
+print(story)
+story.test_story()
