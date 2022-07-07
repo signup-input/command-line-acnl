@@ -55,16 +55,10 @@ class story():
         method = 'use ' + random.choice(['piano', 'guitar', 'drums', 'violin'])
 
     complication = random.choice(complications)
+    
     def __str__(self):
         return "-----------------------------------------------------\nTheme: " + theme + "\nSetting: " + setting + "\n-Goal: " + self.goal + "\n-Method: " + self.method + "\n-Complication: " + self.complication + "\n-----------------------------------------------------\n"
     
-    def test_story(self):
-        print(f"""-----------------------------------------------------
-        'Tis a story of great {self.theme}.
-        You're in {self.setting}
-        and must {self.goal}
-        by {self.method}
-        {self.complication}""")
 
 class substory():
     setting = setting
@@ -85,7 +79,7 @@ class substory():
     elif method == 'use musical instrument':
         method = 'use ' + random.choice(['piano', 'guitar', 'drums', 'violin']) #player should be given an instrument at this point
     complication = random.choice(complications)
-    substory = setting + ' ' + goal + ' ' + method + ' ' + complication
+
     def __str__(self):
         self.substory = f"""-----------------------------------------------------
         'Tis a story of great {self.theme}.
@@ -99,4 +93,4 @@ class substory():
 story = story()
 print(story)
 substory = substory()
-print(story,substory)
+#print(story,substory)
