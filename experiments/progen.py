@@ -14,7 +14,8 @@ Setting (house, The Expanse, etc.)
     complication (work only during night, use training weapons, Dire monsters, bad clues,  etc)
 '''
 
-import random
+import random, names
+
 themes = ['mystery', 'adventure', 'exploration']
 settings = ['The Expanse', 'Tyshau', 'your house', 'Neo-Lilar']
 goals = {'mystery': ['fetch', 'go to'],
@@ -23,7 +24,16 @@ goals = {'mystery': ['fetch', 'go to'],
 methods = ['don\'t kill', 'trade for', 'use musical instrument']
 complications = ['work only during night', 'monsters', 'bad clues']
 
-class story():
+class character(object):
+    def __init__(self) -> None:
+        self.gender = random.choice(["male", "female"])
+        self.name = names.get_full_name(gender=self.gender)
+
+    def __str__(self) -> str:
+        return self.name +" "+ self.gender
+
+
+class story(object):
     global theme
     theme = random.choice(themes)
 
@@ -75,7 +85,7 @@ Main Goal: {self.goal}
 class substory(object):
     setting = setting
     theme = theme
-    
+
     def __init__(self) -> None:
         self.goal = random.choice(goals[theme])
         if self.goal == 'fetch':
@@ -107,6 +117,7 @@ class substory(object):
     def __str__(self):
         self.substory = f"""
     -Goal: {self.goal}
+    -Proposed by: {character()}
     -Method: {self.method}
     -Complication: {self.complication}
     -Reward: {self.reward}"""
@@ -114,5 +125,3 @@ class substory(object):
 
 story = story()
 print(story)
-substory = substory()
-#print(story,substory)
