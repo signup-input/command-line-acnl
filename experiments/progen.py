@@ -34,7 +34,7 @@ class story():
     goal = random.choice(goals[theme])
     if goal == 'fetch':
         global item
-        item = random.choice(['medicine', 'food', 'gold'])
+        item = random.choice(['medicine', 'food', 'gold']) #main item to get
         goal = 'fetch ' + item
     elif goal == 'go to':
         goal = 'go to ' + random.choice(settings)
@@ -61,7 +61,7 @@ class story():
 
     def __str__(self):
         story = f"""-----------------------------------------------------
-Theme: {theme}.
+Theme: {theme}
 Setting: {setting}
 Main Goal: {self.goal}
     -Method: {self.method},
@@ -75,6 +75,7 @@ Main Goal: {self.goal}
 class substory(object):
     setting = setting
     theme = theme
+    
     def __init__(self) -> None:
         self.goal = random.choice(goals[theme])
         if self.goal == 'fetch':
@@ -83,6 +84,7 @@ class substory(object):
             self.goal = 'fetch ' + item
         elif self.goal == 'go to':
             self.goal = 'go to ' + random.choice(settings)
+
         self.method= random.choice(methods)
         if self.method== 'trade for':
             try:
@@ -94,6 +96,7 @@ class substory(object):
             instruments = ['piano', 'guitar', 'drum', 'violin']
             instrument = random.choice(instruments)
             self.method= 'use ' + instrument #player should be given an instrument at this point
+
         self.complication = random.choice(complications)
         
         try:
