@@ -7,11 +7,11 @@ Setting (house, The Expanse, etc.)
         Goal (fetch this, go here)
             Goal (fetch this, go here)
             method (don't kill, use bows, trade for, etc)
-            complication (work only during night, use training weapons, Dire monsters, bad clues,  etc)
+            complication (you\'ll work only during the night, use training weapons, Dire monsters, bad clues,  etc)
         method (don't kill, use bows, trade for, etc)
-        complication (work only during night, use training weapons, Dire monsters, bad clues,  etc)
+        complication (you\'ll work only during the night, use training weapons, Dire monsters, bad clues,  etc)
     method (don't kill, use bows, trade for, etc)
-    complication (work only during night, use training weapons, Dire monsters, bad clues,  etc)
+    complication (you\'ll work only during the night, use training weapons, Dire monsters, bad clues,  etc)
 '''
 
 import random, names
@@ -22,7 +22,7 @@ goals = {'mystery': ['fetch', 'go to'],
          'adventure': ['fetch', 'go to', 'destroy'],
          'exploration': ['fetch', 'go to', 'build']}
 methods = ['don\'t kill', 'trade for', 'use musical instrument']
-complications = ['work only during night', 'monsters', 'bad clues']
+complications = ['you\'ll work only during the night', 'monsters', 'bad clues']
 
 class character(object):
     def __init__(self) -> None:
@@ -95,11 +95,11 @@ class substory(object):
         elif self.goal == 'go to':
             self.goal = 'go to ' + random.choice(settings)
         elif self.goal == 'destroy':
-            creatures = ['dragon', 'monster']
-            things = ['ring', 'sheet music']
+            creatures = ['a dragon', 'some monster']
+            things = ['a ring', 'sheet music']
             
             item = random.choice([random.choice(creatures), random.choice(things)])
-            goal = 'destroy ' + item
+            self.goal = 'destroy ' + item
 
         self.method= random.choice(methods)
         if self.method== 'trade for':
@@ -134,7 +134,7 @@ class substory(object):
 Hey, I'm {character()} and I'm here to help you.
 I just need to {self.goal}.
 Of course it'll be hard because...{self.complication}.
-But,uh, I'll give you that {self.reward} you need."""
+But, uh, I'll give you that {self.reward} you need."""
         print(self.substory)
 
 story = story()
