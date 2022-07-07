@@ -30,7 +30,7 @@ class character(object):
         self.name = names.get_full_name(gender=self.gender)
 
     def __str__(self) -> str:
-        return self.name +" "+ self.gender
+        return self.name +" ("+ self.gender + ")"
 
 
 class story(object):
@@ -82,7 +82,7 @@ Main Goal: {self.goal}
 -----------------------------------------------------"""
         return story
 
-class substory(object):
+class substory(object): 
     setting = setting
     theme = theme
 
@@ -94,6 +94,12 @@ class substory(object):
             self.goal = 'fetch ' + item
         elif self.goal == 'go to':
             self.goal = 'go to ' + random.choice(settings)
+        elif self.goal == 'destroy':
+            creatures = ['dragon', 'monster']
+            things = ['ring', 'sheet music']
+            
+            item = random.choice([random.choice(creatures), random.choice(things)])
+            goal = 'destroy ' + item
 
         self.method= random.choice(methods)
         if self.method== 'trade for':
@@ -122,6 +128,16 @@ class substory(object):
     -Complication: {self.complication}
     -Reward: {self.reward}"""
         return self.substory
+    
+    def tell(self):
+        self.substory = f"""
+Hey, I'm {character()} and I'm here to help you.
+I just need to {self.goal}.
+Of course it'll be hard because...{self.complication}.
+But,uh, I'll give you that {self.reward} you need."""
+        print(self.substory)
 
 story = story()
-print(story)
+#print(story)
+substory = substory()
+substory.tell()
