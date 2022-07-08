@@ -20,10 +20,25 @@ class character(object):
     def __init__(self) -> None:
         self.gender = random.choice(["male", "female"])
         self.firstname = names.get_first_name(gender=self.gender)
-        self.lastmame = names.get_last_name()
+        self.lastname = names.get_last_name()
         
     def __str__(self) -> str:
-        return f'''{self.firstname} {self.lastmame} ({self.gender})'''#self.name + " ("+ self.gender + ")"
+        return f'''{self.firstname} {self.lastname} ({self.gender})'''
+    
+    def firstname(self):
+        return self.firstname
+    
+    def lastname(self):
+        return self.lastname
+
+    def gender(self):
+        return self.gender
+    
+    def pronouns(self):
+        if self.gender == "male":
+            return ["he","him", "his"]
+        elif self.gender == "female":
+            return ["she","her","hers"]
 
 class story(object):
     genre = random.choice(genres)
