@@ -1,12 +1,22 @@
 import random, names
 
-themes = ['mystery', 'adventure', 'speculative']
-settings = ['The Expanse', 'Tyshau', 'your house', 'Neo-Lilar']
+genres = [#'mystery',
+#'adventure',
+'speculative']
+settings = ['The Expanse',
+#'Tyshau',
+#'your house',
+#'Neo-Lilar'
+'train station',
+'bus station',
+]
 goals = {'mystery': ['fetch', 'go to'],
          'adventure': ['fetch', 'go to', 'destroy'],
          'speculative': ['fetch', 'go to', 'build']}
-complications = ['you\'ll work only during the night', 'monsters', 'bad clues']
-all_motives = {"Plotting": "revenge",
+narrative = ["realistic", "insane", "humorous"]#['you\'ll work only during the night', 'monsters', 'bad clues']
+
+#motives = ["surviving", "winning", "esca"]
+all_motives = '''{"Plotting": "revenge",
 "Surviving": "a disaster",
 "Winning": "a contest",
 "Escaping": "capture",
@@ -17,27 +27,28 @@ all_motives = {"Plotting": "revenge",
 "Building": "a better world",
 "Bringing down": ["company", "government"],
 "Stopping": ["something","someone from doing something"],
-"Repaying": "debt"}
+"Repaying": "debt"}'''
 
 class character(object):
     def __init__(self) -> None:
         self.gender = random.choice(["male", "female"])
-        self.name = names.get_full_name(gender=self.gender)
-        self.motives = random.choice(list(all_motives.values()))
+        self.firstname = names.get_first_name(gender=self.gender)
+        self.lastmame = names.get_last_name()
+        #self.motives = random.choice(list(all_motives.values()))
         
     def __str__(self) -> str:
-        if isinstance(self.motives, list):
-            return str(random.choice(self.motives))
-        else:
-            return str(self.motives)
-        #return self.name + self.motives +" ("+ self.gender + ")"
+        #if isinstance(self.motives, list):
+        #    return str(random.choice(self.motives))
+        #else:
+        #    return str(self.motives)
+        return f'''{self.firstname} {self.lastmame} ({self.gender})'''#self.name + " ("+ self.gender + ")"
 
 class story(object):
-    theme = random.choice(themes)
+    genre = random.choice(genres)
     setting = random.choice(settings)
     settings.remove(setting)
-    goal = random.choice(goals[theme])
-    if goal == 'fetch':
+    goal = random.choice(goals[genre])
+    dep='''if goal == 'fetch':
         item = random.choice(['medicine', 'food', 'gold'])
         goal = goal + ' ' + item
     elif goal == 'go to':
@@ -55,19 +66,18 @@ class story(object):
         if buildable == 'a better world':
             goal = 'build a better world (flesh this out)'
         else:
-            goal = 'build ' + buildable
+            goal = 'build ' + buildable'''
 
-    complication = random.choice(complications)
+    narrative = random.choice(narrative)
 
     def __str__(self):
         story = f"""-----------------------------------------------------
-Theme: {self.theme.capitalize()}.
+Genre: {self.genre.capitalize()}
 Setting: {self.setting}
-Main Goal: {self.goal}
-    -Complication: {self.complication}
+Narrative: {self.narrative}
 -----------------------------------------------------"""
         return story
 
 story = story()
-#print(story)
-print(character())
+print(story)
+#print(character())
