@@ -51,6 +51,18 @@ class character(object):
             return ["he","him", "his","brother"]
         elif self.gender == "female":
             return ["she","her","hers","sister"]
+    
+    def male(self):
+        self.gender = "male"
+        self.firstname = names.get_first_name(gender=self.gender)
+        return self.name
+
+    def female(self):
+        self.gender = "female"
+        self.firstname = names.get_first_name(gender=self.gender)
+        return self.name
+
+
 
 class story(object):
     genre = random.choice(genres)
@@ -69,9 +81,9 @@ Narrative: {self.narrative}
 -----------------------------------------------------"""
         mc = character()
         sc = character()
-        {random.choice(["best friend",sc.pronouns()[3]])}
-        story = f'''----------------------\n"{sc.firstname}" I call. "Wait up!"
-{sc.pronouns()[0].capitalize()} is far ahead of me, {random.choice(["weaving through a crowd", "sprinting", "ramming into people like a maniac"])}.
+        {random.choice(["best friend", sc.pronouns()[3]])}
+        story = f'''----------------------\n"{sc.firstname}" I {random.choice(["shout","scream","call"])}. "{random.choice(["Wait up!", "I said I'm sorry!", "Are you okay?", "You were serious?"])}"
+{sc.pronouns()[0].capitalize()} is far ahead of me, {random.choice([f"weaving through {random.choice([f'the sea of people', 'the crowd'])}", "sprinting", "ramming into people " + random.choice(["like a maniac", f"like {sc.pronouns()[0]+' is'}"])])}.
 "Don't let me lose {sc.pronouns()[1]}." I think aloud.
 "{sc.firstname}!" I call again. 
 I have lost {sc.pronouns()[1]} completely.
@@ -79,9 +91,9 @@ I have lost {sc.pronouns()[1]} completely.
 I make it to {random.choice(["""another platform and lean on the guardrail.
 I look down at the track below""", "a metal bench and throw myself on it", 'a large clock. "How grim." I realize'])}, {random.choice(['sighing', 'sobbing', 'scrubbing my tears away', 'willing myself not to cry. Tough people dont cry...'])}.
 My train is gone and I have no way to buy another ticket.
-On top of that, I've lost {random.choice([f"{sc.firstname}, my {random.choice(["best friend",sc.pronouns()[3]])}","the only person I know"])}.
-Am I going to get {random.choice(["home", "back", "to Enchante"])}?
-If so, how?\n-----------------------------------------------------'''
+On top of that, {random.choice(["I've lost", "I just lost"])} {random.choice([sc.firstname,"the only person " + random.choice(["I care about","in this place who cares about me","I know"])])}.
+{random.choice(["Am I going to", "I'm never going to"])} {random.choice(["get", "make it"])} {random.choice(["home", "back", "to Enchante"])}?
+-----------------------------------------------------'''
         return story
 
 story = story()
