@@ -54,13 +54,11 @@ class character(object):
     
     def male(self):
         self.gender = "male"
-        self.firstname = names.get_first_name(gender=self.gender)
-        return self.name
+        self.firstname = names.get_first_name(gender=self.gender)\
 
     def female(self):
         self.gender = "female"
         self.firstname = names.get_first_name(gender=self.gender)
-        return self.name
 
 
 
@@ -81,8 +79,13 @@ Narrative: {self.narrative}
 -----------------------------------------------------"""
         mc = character()
         sc = character()
-        {random.choice(["best friend", sc.pronouns()[3]])}
-        story = f'''----------------------\n"{sc.firstname}!" I {random.choice(["shout","scream","call"])}. "{random.choice(["Wait up!", "I said I'm sorry!", "Are you okay?", "You were serious?"])}"
+        mc.female()
+        sc.male()
+
+        story = f'''Chapter One
+My name is {mc.firstname} {mc.lastname}. Me and {sc.firstname} are
+----------------------
+"{sc.firstname}!" I {random.choice(["shout","scream","call"])}. "{random.choice(["Wait up!", "I said I'm sorry!", "Are you okay?", "You were serious?"])}"
 {sc.pronouns()[0].capitalize()} is far ahead of me, {random.choice([f"weaving through {random.choice([f'the sea of people', 'the crowd'])}", "sprinting", "ramming into people " + random.choice(["like a maniac", f"like {sc.pronouns()[0]+' *is*'}"])])}.
 "{random.choice(["Don't let me lose " + sc.pronouns()[1] + ".","How did it ever come to this?"])}" I think aloud.
 "{sc.firstname}!" I call again. 
