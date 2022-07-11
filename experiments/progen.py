@@ -89,17 +89,18 @@ Narrative: {self.narrative}
         print(mc)
 
         story = f'''Chapter One
-My name is {mc.firstname} {mc.lastname}. My dream is to {mc.motives}. Me and {sc.firstname} are...
+My name is {mc.firstname} {mc.lastname}. My dream is to {mc.motives}.
+Me and {sc.firstname} are...
 ----------------------
 "{sc.firstname}!" I {random.choice(["shout","scream","call"])}. "{random.choice(["Wait up!", "I said I'm sorry!", "Are you okay?", "You were serious?"])}"
-{sc.pronouns()[0].capitalize()} is far ahead of me, {random.choice([f"weaving through {random.choice([f'the sea of people', 'the crowd'])}", "sprinting", "ramming into people " + random.choice(["like a maniac", f"like {sc.pronouns()[0]+' *is*'}"])])}.
+{sc.pronouns()[0].capitalize()} is far ahead of me, {random.choice([f"weaving through {random.choice([f'the sea of people', 'the crowd'])}", "sprinting", "ramming into people " + random.choice(["like a maniac", f"like {sc.pronouns()[0]+' has gone *insane*'}"])])}.
 "{random.choice(["Don't let me lose " + sc.pronouns()[1] + ".","How did it ever come to this?"])}" I think aloud.
 "{sc.firstname}!" I call again. 
 {random.choice(['I have lost ' + sc.pronouns()[1] + ' completely.', sc.pronouns()[0].capitalize() + " is gone.", sc.pronouns()[0] + " vanishes completely."])}
 "{random.choice(["No! Great.",'Come back.',"I'm sorry!", f"We have to go together! {sc.firstname}..."])}" I {random.choice(["groan","shout into the air", "whisper"])} as people continue to move around me.
-I {random.choice(["make it to","arrive at"])} {random.choice(["""another platform and lean on the guardrail.
-I look down at the track below""", "a metal bench and throw myself on it", 'a large clock with imposing Roman numerals. "How grim." I realize'])}, {random.choice(['sighing', 'sobbing', 'scrubbing my tears away', 'willing myself not to cry. Tough people dont cry...'])}.
-Our train {random.choice(["left just minutes ago","is gone"])} {random.choice(["and I have no way to buy", "There is no point in buying", "and why buy"])} another ticket.
+I {random.choice(["numbly continue to walk and make it to","keep walking and arrive at", "see"])} {random.choice(["""another platform and lean on the guardrail.
+I look down at the track below""", "a metal bench and throw myself on it", 'a large clock with eye-slicing Roman numerals. "How grim." I realize'])}, {random.choice(['sighing', 'sobbing', 'scrubbing my tears away', 'willing myself not to cry. Tough people dont cry...'])}.
+My train {random.choice(["left just minutes ago","is gone"])}{random.choice([" and I have no way to buy", ". There is no point in buying", " and why buy"])} another ticket.
 On top of that, {random.choice(["I've lost", "I just lost"])} {random.choice([sc.firstname,"the only person " + random.choice(["I care about","in this place who cares about me","I know"])])}.
 {random.choice(["Am I going to", "Am I never going to"])} {random.choice(["get", "make it"])} {random.choice(["home", "back", "to Enchante"])}?
 -----------------------------------------------------'''
