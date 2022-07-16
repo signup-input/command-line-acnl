@@ -1,1 +1,0 @@
-#Sairus, Amaria, Mihr, Marlys, Chancellor, Vina, Jayrina, Jay, Kazi, 

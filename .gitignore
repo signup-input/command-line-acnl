@@ -129,5 +129,4 @@ dmypy.json
 .pyre/
 
 # My additions
-dat.json
-experiments/stories.txt
+save_data/

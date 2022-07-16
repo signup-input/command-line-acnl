@@ -3,7 +3,7 @@ from text_scroll_module import scroll
 
 def load():
     try:
-        f = open("pet/pet_dat.json", "r")
+        f = open("save_data/pet_dat.json", "r")
         save_data = json.loads(f.read())
         f.close()
         #all variables are now loaded from the save file
@@ -37,7 +37,7 @@ def save():
         "happiness" : happiness,
     }
     
-    with open("pet/pet_dat.json", "w") as outfile:
+    with open("save_data/pet_dat.json", "w") as outfile:
         json.dump(dictionary, outfile)
     print(f"Saved {name}'s data.")
 

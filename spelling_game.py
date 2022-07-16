@@ -8,8 +8,15 @@ final_word = ""
 while running is True:
     str = input("Enter a letter: ")
     if len(str) > 1:
-        str = "" 
-        scroll("Please enter only one letter.")
+        if str == "quit":
+            scroll("Oh, you want to stop? Okay.")
+            running = False
+        else:
+            str = "" 
+            scroll("Please enter only one letter.")
+    elif len(str) == 0:
+        scroll("Please enter a letter.")
+    
     else:
         final_word = final_word + str  
         scroll("You: " + final_word)

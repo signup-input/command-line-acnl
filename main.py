@@ -1,5 +1,6 @@
 import random, sys, time, json, datetime
 from text_scroll_module import scroll
+from character_gen import character
 
 title = "Animal Crossing"
 ver = "v1.0.0"
@@ -10,18 +11,18 @@ cmd_fmt2 = "|{}|\nYou: "
 fruits = ["apple", "banana", "orange", "pear", "strawberry"]
 furniture = ["chair", "table", "bed", "desk", "couch"]
 
-
 def load():
     try:
-        f = open("dat.json", "r")
+        f = open("save_data/dat.json", "r")
         save_data = json.loads(f.read())
         f.close()
         #all variables are now loaded from the save file
-        global username, pockets, phrase, town_fruit
+        global username, pockets, phrase, town_fruit, residents
         username = save_data["name"]
         pockets = save_data["pockets"]
         phrase = save_data["phrase"]
         town_fruit = save_data["town_fruit"]
+        residents = save_data["residents"]
         print(f"Loaded {username}'s data.")
         return True
     except:
@@ -35,9 +36,10 @@ def save():
         "phrase" : phrase,
         "pockets" : pockets,
         "town_fruit" : town_fruit,
+        "residents" : residents,
     }
     
-    with open("dat.json", "w") as outfile:
+    with open("save_data/dat.json", "w") as outfile:
         json.dump(dictionary, outfile)
     print(f"Saved {username}'s data.")
 
@@ -57,13 +59,14 @@ elif load == False:
         "phrase" : phrase,
         "pockets" : [],
         "town_fruit" : town_fruit,
+        "residents" : [character().firstname, character().firstname, character().firstname],
     }
     
-    with open("dat.json", "w") as outfile:
+    with open("save_data/dat.json", "w") as outfile:
         json.dump(dictionary, outfile)
 
-    scroll(f'You: I\'m, {name}. \"{phrase.capitalize()}\".')
-    scroll(f"Well, \"{phrase}\" to you too, {name}.")
+    scroll(f'You: I\'m, {username}. \"{phrase.capitalize()}\".')
+    scroll(f"Well, \"{phrase}\" to you too, {username}.")
     
 print("===========================================================")
 print("===========================================================")
