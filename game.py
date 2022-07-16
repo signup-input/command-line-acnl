@@ -1,5 +1,5 @@
 import random, sys, time, json, datetime
-from text.font_effects.text_scroll_module import scroll
+from text_scroll_module import scroll
 
 title = "Animal Crossing"
 ver = "v1.0.0"
@@ -169,7 +169,7 @@ while running == True:
         scroll("You approach a person. They ask if you would like to play a game.")
         scroll("(You don't have a choice yet.)")
         scroll("You play a game with them.")
-        import spelling_game.spelling_game
+        import spelling_game
         scroll("Feature has not been implemented yet.")
         pass
     elif cmd == "visit someone":
@@ -222,7 +222,7 @@ while running == True:
     
     elif cmd == "play with my pet":
         scroll("You play with your pet.")
-        import pet.pet
+        import pet
         
     else:
         help()

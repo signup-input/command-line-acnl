@@ -1,5 +1,5 @@
 import random,json,sys
-from text.font_effects.text_scroll_module import scroll
+from text_scroll_module import scroll
 
 def load():
     try:
