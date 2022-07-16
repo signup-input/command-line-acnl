@@ -169,7 +169,7 @@ while running == True:
         scroll("You approach a person. They ask if you would like to play a game.")
         scroll("(You don't have a choice yet.)")
         scroll("You play a game with them.")
-        import spelling_game
+        import spelling_game.spelling_game
         scroll("Feature has not been implemented yet.")
         pass
     elif cmd == "visit someone":
