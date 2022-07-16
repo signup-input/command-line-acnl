@@ -120,8 +120,8 @@ while running == True:
     setting = "outdoors"
 
     #you can't save or view manual at any time, only in this part of the loop
-    if cmd == "see manual" or cmd == "manual" or cmd == "help" or cmd == "info":
-        scroll(manual)
+    if cmd == "see manual" or cmd == "manual":
+        scroll(manual["setting"])
     elif cmd == "save and quit":
         save()
         scroll("See you soon!")
@@ -166,7 +166,10 @@ while running == True:
 
     elif cmd == "talk to someone":
         #scroll(f"You approach {}.")
-        scroll("You approach a person.")
+        scroll("You approach a person. They ask if you would like to play a game.")
+        scroll("(You don't have a choice yet.)")
+        scroll("You play a game with them.")
+        import spelling_game
         scroll("Feature has not been implemented yet.")
         pass
     elif cmd == "visit someone":
