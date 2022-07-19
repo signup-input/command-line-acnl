@@ -1,4 +1,4 @@
-import random, sys, time, json, datetime
+import random, sys, time, json, datetime, unittest
 from text_scroll_module import scroll
 from character_gen import character #!todo add to tests
 
@@ -10,66 +10,6 @@ cmd_fmt2 = "|{}|\nYou: "
 
 fruits = ["apple", "banana", "orange", "pear", "strawberry"]
 furniture = ["chair", "table", "bed", "desk", "couch"]
-
-def load():#!todo add to tests
-    try:
-        f = open("save_data/dat.json", "r")
-        save_data = json.loads(f.read())
-        f.close()
-        #all variables are now loaded from the save file
-        global username, pockets, phrase, town_fruit, residents
-        username = save_data["name"]
-        pockets = save_data["pockets"]
-        phrase = save_data["phrase"]
-        town_fruit = save_data["town_fruit"]
-        residents = save_data["residents"]
-        print(f"Loaded {username}'s data.")
-        return True
-    except:
-        return False
-
-def save(): #!todo add to tests
-    scroll("Saving data...")
-
-    dictionary ={
-        "name" : username,
-        "phrase" : phrase,
-        "pockets" : pockets,
-        "town_fruit" : town_fruit,
-        "residents" : residents,
-    }
-    
-    with open("save_data/dat.json", "w") as outfile:
-        json.dump(dictionary, outfile)
-    print(f"Saved {username}'s data.")
-
-
-load = load()
-if load == True:
-    scroll(f"Welcome back to {title}, {ver}!")
-    scroll(f"You're the one they call {username}, right?")
-elif load == False:
-    scroll(f"Welcome to {title}, {ver}!")
-    username = input(cmd_fmt.format("What should we call you?"))
-    phrase = input(cmd_fmt.format("Tell us your catchphrase."))
-    town_fruit = random.choice(fruits)
-
-    dictionary ={
-        "name" : username,
-        "phrase" : phrase,
-        "pockets" : [],
-        "town_fruit" : town_fruit,
-        "residents" : [character().firstname, character().firstname, character().firstname],
-    }
-    
-    with open("save_data/dat.json", "w") as outfile:
-        json.dump(dictionary, outfile)
-
-    scroll(f'You: I\'m, {username}. \"{phrase.capitalize()}\".')
-    scroll(f"Well, \"{phrase}\" to you too, {username}.")
-    
-print("===========================================================")
-print("===========================================================")
 
 manual = {
     "outdoors": '''===Manual===
@@ -117,6 +57,67 @@ def help():
         else:
             helped = False
 
+def load():#!todo add to tests
+    try:
+        f = open("save_data/dat.json", "r")
+        save_data = json.loads(f.read())
+        f.close()
+        #all variables are now loaded from the save file
+        global username, pockets, phrase, town_fruit, residents
+        username = save_data["name"]
+        pockets = save_data["pockets"]
+        phrase = save_data["phrase"]
+        town_fruit = save_data["town_fruit"]
+        residents = save_data["residents"]
+        print(f"Loaded {username}'s data.")
+        return True
+    except:
+        return False
+
+def save(): #!todo add to tests
+    scroll("Saving data...")
+
+    dictionary ={
+        "name" : username,
+        "phrase" : phrase,
+        "pockets" : pockets,
+        "town_fruit" : town_fruit,
+        "residents" : residents,
+    }
+    
+    with open("save_data/dat.json", "w") as outfile:
+        json.dump(dictionary, outfile)
+    print(f"Saved {username}'s data.")
+
+#Start of game
+load = load()
+if load == True:
+    scroll(f"Welcome back to {title}, {ver}!")
+    scroll(f"You're the one they call {username}, right?")
+elif load == False:
+    scroll(f"Welcome to {title}, {ver}!")
+    username = input(cmd_fmt.format("What should we call you?"))
+    phrase = input(cmd_fmt.format("Tell us your catchphrase."))
+    town_fruit = random.choice(fruits)
+
+    dictionary ={
+        "name" : username,
+        "phrase" : phrase,
+        "pockets" : [],
+        "town_fruit" : town_fruit,
+        "residents" : [character().firstname, character().firstname, character().firstname],
+    }
+    
+    with open("save_data/dat.json", "w") as outfile:
+        json.dump(dictionary, outfile)
+
+    scroll(f'You: I\'m, {username}. \"{phrase.capitalize()}\".')
+    scroll(f"Well, \"{phrase}\" to you too, {username}.")
+    
+print("===========================================================")
+print("===========================================================")
+
+#game loop
 running = True
 while running == True:
     cmd = input(cmd_fmt.format("What would you like to do?")).lower()
