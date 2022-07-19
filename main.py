@@ -1,6 +1,6 @@
 import random, sys, time, json, datetime
 from text_scroll_module import scroll
-from character_gen import character
+from character_gen import character #!todo add to tests
 
 title = "Animal Crossing"
 ver = "v1.0.0"
@@ -11,7 +11,7 @@ cmd_fmt2 = "|{}|\nYou: "
 fruits = ["apple", "banana", "orange", "pear", "strawberry"]
 furniture = ["chair", "table", "bed", "desk", "couch"]
 
-def load():
+def load():#!todo add to tests
     try:
         f = open("save_data/dat.json", "r")
         save_data = json.loads(f.read())
@@ -28,7 +28,7 @@ def load():
     except:
         return False
 
-def save():
+def save(): #!todo add to tests
     scroll("Saving data...")
 
     dictionary ={
@@ -172,7 +172,7 @@ while running == True:
         scroll("You approach a person. They ask if you would like to play a game.")
         scroll("(You don't have a choice yet.)")
         scroll("You play a game with them.")
-        import spelling_game
+        import spelling_game #!todo add to tests
         scroll("Feature has not been implemented yet.")
         pass
     elif cmd == "visit someone":
@@ -225,7 +225,7 @@ while running == True:
     
     elif cmd == "play with my pet":
         scroll("You play with your pet.")
-        import pet
+        import pet #!todo add to tests
         
     else:
         help()
