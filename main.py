@@ -36,10 +36,7 @@ Actions:
 -put passport away''',
 }
 
-passport = f'''===Passport===
-Name: {username}
-Catchphrase: {phrase}
-Date of Birth: ###/###/####'''
+
 
 def help():
     helped = False
@@ -117,6 +114,11 @@ elif load == False:
 print("===========================================================")
 print("===========================================================")
 
+passport = f'''===Passport===
+Name: {username}
+Catchphrase: {phrase}
+Date of Birth: ###/###/####'''
+
 #game loop
 running = True
 while running == True:
@@ -163,7 +165,7 @@ while running == True:
             input("Press Enter to shake the tree.")
             if random.randint(1, 3) == 3:
                 scroll(f"You got one: {random.choice(items).strip()}")
-            #
+            
             else:
                 scroll("Nothing happened.")
         scroll("Your arms got tired")
@@ -174,7 +176,6 @@ while running == True:
         scroll("(You don't have a choice yet.)")
         scroll("You play a game with them.")
         import spelling_game #!todo add to tests
-        scroll("Feature has not been implemented yet.")
         pass
     elif cmd == "visit someone":
         #scroll(f"You visit {}.")
