@@ -1,64 +1,23 @@
-# Python program to create
-# a file explorer in Tkinter
-
-# import all components
-# from the tkinter library
+import tkinter as tk
 from tkinter import *
+from PIL import Image, ImageTk
+root = tk.Tk()
+def change_i():
+    if sound_btn.image == icon:
+        #start_recording()
 
-# import filedialog module
-from tkinter import filedialog
+        sound_btn.config(image=icon2)
+        sound_btn.image = icon2
+    else:
+        #stop_recording()
 
-# Function for opening the
-# file explorer window
-def browseFiles():
-	filename = filedialog.askopenfilename(initialdir = "/",
-										title = "Select a File",
-										filetypes = (("Text files",
-														"*.txt*"),
-													("all files",
-														"*.*")))
-	
-	# Change label contents
-	label_file_explorer.configure(text="File Opened: "+filename)
-	
-	
-																								
-# Create the root window
-window = Tk()
+        sound_btn.config(image=icon)
+        sound_btn.image = icon
 
-# Set window title
-window.title('File Explorer')
+icon = PhotoImage(file='C:/Users/AAoGr/Downloads/command-line-acnl/experiments/puzzle game/icons/icons8-file-folder-48.png') # https://icons8.com/icons/set/file-folder
+icon2 = PhotoImage(file='C:/Users/AAoGr/Downloads/command-line-acnl/experiments/puzzle game/icons/icons8-open-file-folder-48.png') # https://icons8.com/icons/set/file-folder
 
-# Set window size
-window.geometry("500x500")
-
-#Set window background color
-window.config(background = "white")
-
-# Create a File Explorer label
-label_file_explorer = Label(window,
-							text = "File Explorer using Tkinter",
-							width = 100, height = 4,
-							fg = "blue")
-
-	
-button_explore = Button(window,
-						text = "Browse Files",
-						command = browseFiles)
-
-button_exit = Button(window,
-					text = "Exit",
-					command = exit)
-
-# Grid method is chosen for placing
-# the widgets at respective positions
-# in a table like structure by
-# specifying rows and columns
-label_file_explorer.grid(column = 1, row = 1)
-
-button_explore.grid(column = 1, row = 2)
-
-button_exit.grid(column = 1,row = 3)
-
-# Let the window wait for any events
-window.mainloop()
+sound_btn = tk.Button(root, image=icon, width=70,height=60,relief=FLAT ,command=change_i )
+sound_btn.image = icon
+sound_btn.grid(row=0, column=1)
+root.mainloop()
