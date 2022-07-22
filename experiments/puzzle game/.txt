@@ -1,0 +1,12 @@
+https://machinations.io/articles/how-to-design-a-puzzle-game/
+
+Different types of mechanics
+There are many different types of game mechanics that you can use in your puzzle game design. The four most common ones include:
+
+Matching: This is probably the most popular and well-known type of mechanic. In a matching game, the player needs to find and connect items that match each other in some way. Bejeweled is a good example of this.
+
+Sequencing: In these games, the player needs to put items in the correct order or sequence. The classic game Simon is an example of this type of mechanic.
+
+Sliding: Sliding puzzles are ones where the player needs to slide pieces around until they’re in the correct position. Sokoban is a well-known sliding puzzle game.
+
+Physics: In these games, the player needs to use physics principles to solve the puzzles. Angry Birds is a good example of this type of game.
