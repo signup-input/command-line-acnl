@@ -2,6 +2,11 @@ import tkinter as tk
 from tkinter import *
 from PIL import Image, ImageTk
 root = tk.Tk()
+X = 100
+Y = 50
+root.geometry(f"{X}x{Y}")
+
+
 def change_i():
     if folder_btn.image == icon:
         #start_recording()
